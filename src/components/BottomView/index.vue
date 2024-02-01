@@ -67,7 +67,7 @@ export default {
       searchUserOption: {
         xAxis: {
           type: 'category',
-          // 消除x轴边距
+          // 消除x轴边距123
           boundaryGap: false
         },
         yAxis: {
