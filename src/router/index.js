@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import BMapView from '../views/BMapView.vue'
+import BMap2View from '../views/BMap2View.vue'
+import LiquidfillView from '../views/LiquidfillView.vue';
+import WordCloundView from '../views/WordCloundView.vue'
 
 Vue.use(VueRouter)
 
@@ -11,12 +15,24 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/bmap',
+    name: 'bmap',
+    component: BMapView
+  },
+  {
+    path: '/bmap2',
+    name: 'bmap2',
+    component: BMap2View
+  },
+  {
+    path: '/liquidfill',
+    name: 'Liquidfill',
+    component: LiquidfillView
+  },
+  {
+    path: '/wordClound',
+    name: 'WordCloundView',
+    component: WordCloundView
   }
 ]
 

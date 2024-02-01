@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- 得用2.0的库,若是v-chart使用bmap得需要引入且库不能为1.0,而ve-bmap不需要引入 -->
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
   </head>
   <body>
     <noscript>
