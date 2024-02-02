@@ -29,9 +29,20 @@ function wrapperNumber(o,k) {
     return o && o[k]? format(o[k]): '0'
 }
 
-
 function wrapperArray(o, k) {
     return o && o[k] ? o[k] : []
+}
+
+function wrapperObject(o, k) {
+    if(o && k.indexOf('')>=0){
+        const keys=k.split('.')
+        keys.forEach(key =>{
+            o=o[key]
+        })
+        return o
+    }else{
+        return o && o[k] ? o[k] : {}
+    }
 }
 
 export default {
@@ -40,6 +51,15 @@ export default {
         reportData() {
             // this.getReportData()可以获取到inject中的getReportData属性
             return this.getReportData()
+        },
+        userToday() {
+            return wrapperArray(this.reportData, 'userToday')
+        },
+        userGrowthLastDay() {
+            return wrapperArray(this.reportData, 'userGrowthLastDay')
+        },
+        userGrowthLastMonth() {
+            return wrapperArray(this.reportData, 'userGrowthLastMonth')
         },
         salesToday() {
             // 相当于return this.reportData && this.reportData.salesToday
@@ -64,6 +84,18 @@ export default {
         orderTrend() {
             return wrapperArray(this.reportData, 'orderTrend')
         },
+        orderUser() {
+            return wrapperNumber(this.reportData, 'orderUser')
+        },
+        returnRate(){
+            return wrapperPercentage(this.reportData, 'returnRate')
+        },
+        orderUserTrend(){
+            return wrapperArray(this.reportData, 'orderUserTrend')
+        },
+        orderUserTrendAxis() {
+            return wrapperArray(this.reportData, 'orderUserTrendAxis')
+        },
         orderFullYear(){
             return wrapperArray(this.reportData, 'orderFullYear')
         },
@@ -83,10 +115,27 @@ export default {
             return wrapperArray(this.reportData, 'userRank')    
         },
         
+        
         // 返回reportData属性值
-        wrodCloud() {
+        wordCloud() {
             return this.getWordCloud()
         },
+
+        category1(){
+            // 同时想要直接拿到获取到category.data1.axis
+            return wrapperObject(this.reportData,'category.data1')
+        },
+        category2() {
+            return wrapperObject(this.reportData, 'category.data2')
+        },
+        mapData(){
+            return this.getMapData()
+        }
+    },
+    methods:{
+        format(v){
+            return format(v)
+        }
     },
     // 接受外层向组件传的属性
     inject: ['getReportData', 'getWordCloud','getMapData']
